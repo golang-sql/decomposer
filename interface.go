@@ -8,7 +8,7 @@ package decomposer
 // coefficient (also known as a significand) as a []byte, and an int32 exponent.
 // These are composed into a final value as "decimal = (neg) (form=finite) coefficient * 10 ^ exponent".
 // A zero length coefficient is a zero value.
-// If the form is not finite, the coefficient and scale should be zero and should be ignored.
+// If the form is not finite the coefficient and scale should be ignored.
 // The negative parameter may be set to true for any form, although implementations are not required
 // to respect the negative parameter in the non-finite form.
 //
