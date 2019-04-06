@@ -1,7 +1,17 @@
-// Package decomposer supports decimal marshalling and unmarshalling
-// to and from components. Supports both fixed and arbitrary precision decimals.
-package decomposer
+# Decimal Compose / Decompose interface
 
+There is no standard base 10 decimal type, fixed or arbitrary precision,
+in the Go standard library. There are a number of packages to work with
+base 10 decimals, which solve individual needs in applications. However,
+when a package needs to pass through or process decimals from other applications,
+like database drivers, or packages that interface with a money processor,
+it would be better to have a way to specify a decimal type.
+
+If all decimal types choose to implement the decomposer.Decimal interface,
+packages would need to implement this type to pass the value through. The
+discussion of can be found [here](https://golang.org/issue/30870).
+
+```
 // Decimal composes or decomposes a decimal value to and from individual parts.
 // There are four separate parts: a boolean negative flag, a form byte with three possible states
 // (finite=0, infinite=1, NaN=2),  a base-2 little-endian integer
@@ -29,3 +39,4 @@ type Decimal interface {
 	// represented then an error should be returned.
 	Compose(form byte, negative bool, coefficient []byte, exponent int32) error
 }
+```
