@@ -37,6 +37,8 @@ type Decimal interface {
 
 	// Compose sets the internal decimal value from parts. If the value cannot be
 	// represented then an error should be returned.
+	// The coefficent should not be modified. Successive calls to compose with
+	// the same arguments should result in the same decimal value.
 	Compose(form byte, negative bool, coefficient []byte, exponent int32) error
 }
 ```
