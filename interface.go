@@ -20,11 +20,18 @@ package decomposer
 // Implementations must return an error if a NaN or Infinity is attempted to be set while neither
 // are supported.
 type Decimal interface {
+	DecimalDecompose
+	DecimalCompose
+}
+
+type DecimalDecompose interface {
 	// Decompose returns the internal decimal state into parts.
 	// If the provided buf has sufficient capacity, buf may be returned as the coefficient with
 	// the value set and length set as appropriate.
 	Decompose(buf []byte) (form byte, negative bool, coefficient []byte, exponent int32)
+}
 
+type DecimalCompose interface {
 	// Compose sets the internal decimal value from parts. If the value cannot be
 	// represented then an error should be returned.
 	// The coefficent should not be modified. Successive calls to compose with
