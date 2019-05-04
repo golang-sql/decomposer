@@ -4,7 +4,7 @@ package decomposer
 
 // Decimal composes or decomposes a decimal value to and from individual parts.
 // There are four separate parts: a boolean negative flag, a form byte with three possible states
-// (finite=0, infinite=1, NaN=2),  a base-2 little-endian integer
+// (finite=0, infinite=1, NaN=2),  a base-2 big-endian integer
 // coefficient (also known as a significand) as a []byte, and an int32 exponent.
 // These are composed into a final value as "decimal = (neg) (form=finite) coefficient * 10 ^ exponent".
 // A zero length coefficient is a zero value.
